@@ -1,0 +1,7 @@
+TODOs
+
+- users CRUD
+- users authentication & authorization using Devise gem
+- user_animes (create, update, delete)
+- create a public list of animes (index and show)
+- fetch animes from an external API and clean and save them in the database
