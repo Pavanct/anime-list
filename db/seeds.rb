@@ -28,15 +28,15 @@ csv.each do |row|
   )
 end
 
-if Rails.env.development? && Rails.application.config.seed_data.present?
-  user = User.first
-  animes = Anime.all
-  animes.each do |anime|
-    if user.present? and anime.episode_count.present?
-      UserAnime.create!(user: user, anime: anime, episodes_watched: rand(0..anime.episode_count))
-    else
-      # Handle the case where episode_count is nil or empty (log a message, skip creation)
-      puts "Skipping UserAnime creation for #{anime.title} due to missing episode count."
-    end
-  end
-end
+# if Rails.env.development? && Rails.application.config.seed_data.present?
+#   user = User.first
+#   animes = Anime.all
+#   animes.each do |anime|
+#     if user.present? and anime.episode_count.present?
+#       UserAnime.create!(user: user, anime: anime, episodes_watched: rand(0..anime.episode_count))
+#     else
+#       # Handle the case where episode_count is nil or empty (log a message, skip creation)
+#       puts "Skipping UserAnime creation for #{anime.title} due to missing episode count."
+#     end
+#   end
+# end
