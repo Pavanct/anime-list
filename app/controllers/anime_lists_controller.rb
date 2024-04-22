@@ -50,6 +50,14 @@ class AnimeListsController < ApplicationController
   end
 
   def destroy
+    @anime_list = AnimeList.find_by(id: params[:id])
+
+    if @anime_list
+      @anime_list.destroy
+      render json: { message: 'Anime list was successfully destroyed.', anime_list: @anime_list}
+    else
+      render json: { error: 'Anime list not found.' }, status: :not_found
+    end
   end
 
   private

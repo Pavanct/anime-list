@@ -10,7 +10,7 @@
 #
 class AnimeList < ApplicationRecord
   belongs_to :user
-  has_many :user_animes
+  has_many :user_animes, dependent: :destroy
   has_many :animes, through: :user_animes
 
   validates :user_id, presence: true
