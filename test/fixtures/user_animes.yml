@@ -8,6 +8,7 @@
 #  episodes_watched :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  anime_list_id    :integer          not null
 #
 
 one:

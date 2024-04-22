@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_22_205948) do
+ActiveRecord::Schema.define(version: 2024_04_22_211354) do
+
+  create_table "anime_lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_anime_lists_on_user_id"
+  end
 
   create_table "animes", force: :cascade do |t|
     t.string "title"
@@ -28,6 +36,8 @@ ActiveRecord::Schema.define(version: 2024_04_22_205948) do
     t.integer "episodes_watched"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "anime_list_id", null: false
+    t.index ["anime_list_id"], name: "index_user_animes_on_anime_list_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,4 +47,6 @@ ActiveRecord::Schema.define(version: 2024_04_22_205948) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "anime_lists", "users"
+  add_foreign_key "user_animes", "anime_lists"
 end
