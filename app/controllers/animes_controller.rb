@@ -1,6 +1,6 @@
 class AnimesController < ApplicationController
   def index
-    @animes = Anime.order(:id)
+    @animes = Anime.order(sort_column + ' ' + sort_direction)
 
     if params[:title]
       @animes = @animes.where('title LIKE ?', "%#{params[:title]}%")
@@ -17,5 +17,15 @@ class AnimesController < ApplicationController
 
   def show
     render json: Anime.find(params[:id])
+  end
+
+  private
+
+  def sort_column
+    Anime.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 end
