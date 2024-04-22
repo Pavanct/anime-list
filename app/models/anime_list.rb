@@ -14,4 +14,5 @@ class AnimeList < ApplicationRecord
   has_many :animes, through: :user_animes
 
   validates :user_id, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 end
