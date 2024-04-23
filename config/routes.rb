@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'animes#index'
+
   devise_for :users
   resources :animes
 
