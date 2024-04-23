@@ -1,2 +1,27 @@
 <h1>Animes#index</h1>
-<p>Find me in app/views/animes/index.html.erb</p>
+<%# return a list of animes in table format %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Type</th>
+      <th>Episode count</th>
+      <th>Rating</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @animes.each do |anime| %>
+      <tr>
+        <td><%= anime.title %></td>
+        <td><%= anime.genre %></td>
+        <td><%= anime.anime_type %></td>
+        <td><%= anime.episode_count%></td>
+        <td><%= anime.rating %></td>
+        <td>
+          <%= link_to 'Show', anime %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
