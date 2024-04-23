@@ -32,6 +32,8 @@ gem 'devise', '~> 4.9.3'
 
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 
+gem 'ransack', '~> 2.4'
+
 gem 'annotate'
 
 gem 'active_model_serializers'
