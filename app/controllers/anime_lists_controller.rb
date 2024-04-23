@@ -1,5 +1,8 @@
 class AnimeListsController < ApplicationController
-  protect_from_forgery with: :null_session
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :set_anime_list, only: [:show, :update, :destroy]
+  before_action :authorize_user!, only: [:update, :destroy]
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format =~ /^application\/json/ }
 
   def index
     @anime_lists = AnimeList.where(user_id: params[:user_id]).includes(:animes)
@@ -61,6 +64,16 @@ class AnimeListsController < ApplicationController
   end
 
   private
+
+  def set_anime_list
+    @anime_list = AnimeList.find(params[:id])
+  end
+
+  def authorize_user!
+    unless @anime_list.user == current_user
+      render json: { error: 'You are not authorized to perform this action.' }, status: :unauthorized
+    end
+  end
 
   def anime_list_params
     params.require(:anime_list).permit(:name)
