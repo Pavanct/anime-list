@@ -12,7 +12,6 @@ class AnimesController < ApplicationController
 
     @animes = @animes.page(params[:page] || 1).per(params[:per_page] || 25)
 
-    # render json or html based on request format
     respond_to do |format|
       format.html
       format.json { render json: @animes }
