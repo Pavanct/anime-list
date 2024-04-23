@@ -1,5 +1,9 @@
 <h1>Animes#index</h1>
 <%# return a list of animes in table format %>
+
+<% if user_signed_in? %>
+  <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+<% end %>
 <table>
   <thead>
     <tr>
